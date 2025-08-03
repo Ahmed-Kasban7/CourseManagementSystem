@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\C# Projects\\SchoolManagementSyetem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B909BE23-B56C-42BE-A8A8-2E076A62AE79}|SchoolManagementSyetem\\SchoolManagementSyetem.csproj|d:\\projects\\c# projects\\schoolmanagementsyetem\\schoolmanagementsyetem\\subjectsmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B909BE23-B56C-42BE-A8A8-2E076A62AE79}|SchoolManagementSyetem\\SchoolManagementSyetem.csproj|solutionrelative:schoolmanagementsyetem\\subjectsmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B909BE23-B56C-42BE-A8A8-2E076A62AE79}|SchoolManagementSyetem\\SchoolManagementSyetem.csproj|d:\\projects\\c# projects\\schoolmanagementsyetem\\schoolmanagementsyetem\\subject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B909BE23-B56C-42BE-A8A8-2E076A62AE79}|SchoolManagementSyetem\\SchoolManagementSyetem.csproj|solutionrelative:schoolmanagementsyetem\\subject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B909BE23-B56C-42BE-A8A8-2E076A62AE79}|SchoolManagementSyetem\\SchoolManagementSyetem.csproj|d:\\projects\\c# projects\\schoolmanagementsyetem\\schoolmanagementsyetem\\enrollment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B909BE23-B56C-42BE-A8A8-2E076A62AE79}|SchoolManagementSyetem\\SchoolManagementSyetem.csproj|solutionrelative:schoolmanagementsyetem\\enrollment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 204,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SubjectsManagement.cs",
+              "DocumentMoniker": "D:\\Projects\\C# Projects\\SchoolManagementSyetem\\SchoolManagementSyetem\\SubjectsManagement.cs",
+              "RelativeDocumentMoniker": "SchoolManagementSyetem\\SubjectsManagement.cs",
+              "ToolTip": "D:\\Projects\\C# Projects\\SchoolManagementSyetem\\SchoolManagementSyetem\\SubjectsManagement.cs",
+              "RelativeToolTip": "SchoolManagementSyetem\\SubjectsManagement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T04:25:08.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Subject.cs",
+              "DocumentMoniker": "D:\\Projects\\C# Projects\\SchoolManagementSyetem\\SchoolManagementSyetem\\Subject.cs",
+              "RelativeDocumentMoniker": "SchoolManagementSyetem\\Subject.cs",
+              "ToolTip": "D:\\Projects\\C# Projects\\SchoolManagementSyetem\\SchoolManagementSyetem\\Subject.cs",
+              "RelativeToolTip": "SchoolManagementSyetem\\Subject.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAACUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T04:24:59.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Enrollment.cs",
+              "DocumentMoniker": "D:\\Projects\\C# Projects\\SchoolManagementSyetem\\SchoolManagementSyetem\\Enrollment.cs",
+              "RelativeDocumentMoniker": "SchoolManagementSyetem\\Enrollment.cs",
+              "ToolTip": "D:\\Projects\\C# Projects\\SchoolManagementSyetem\\SchoolManagementSyetem\\Enrollment.cs",
+              "RelativeToolTip": "SchoolManagementSyetem\\Enrollment.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAkwGgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-02T05:16:15.142Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

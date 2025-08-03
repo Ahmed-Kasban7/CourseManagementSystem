@@ -1,0 +1,14 @@
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\bin\Debug\net8.0\CourseManagementSystem.exe
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\bin\Debug\net8.0\CourseManagementSystem.deps.json
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\bin\Debug\net8.0\CourseManagementSystem.runtimeconfig.json
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\bin\Debug\net8.0\CourseManagementSystem.dll
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\bin\Debug\net8.0\CourseManagementSystem.pdb
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\CourseManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\CourseManagementSystem.AssemblyInfoInputs.cache
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\CourseManagementSystem.AssemblyInfo.cs
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\CourseManagementSystem.csproj.CoreCompileInputs.cache
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\CourseManagementSystem.dll
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\refint\CourseManagementSystem.dll
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\CourseManagementSystem.pdb
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\CourseManagementSystem.genruntimeconfig.cache
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\ref\CourseManagementSystem.dll
