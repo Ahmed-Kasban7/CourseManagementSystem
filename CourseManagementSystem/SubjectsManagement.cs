@@ -7,27 +7,27 @@ using System.Threading.Tasks;
 
 namespace SchoolManagementSyetem
 {
-    public class SubjectsManagement
+    public class CoursesManagement
     {
 
-        private static List<Subject> Subjects =new List<Subject>();
-        public static  void AddSubject(Subject subject)=>Subjects.Add(subject);
+        private static List<Course> Courses =new List<Course>();
+        public static  void AddCourse(Course course)=>Courses.Add(course);
        
-        public static void RemoveSubject(int ID)=>  Subjects.Remove(SearchSubjectByID(ID));
+        public static void RemoveCourse(int ID)=>  Courses.Remove(SearchCourseByID(ID));
         
-        public static List<Subject> GetSubjects() => Subjects;
+        public static List<Course> GetCourses() => Courses;
         
-        public static Subject SearchSubjectByID(int ID)
+        public static Course SearchCourseByID(int ID)
         {
-            foreach (Subject subject in Subjects) {
-                if(subject.ID == ID)
+            foreach (Course course in Courses) {
+                if(course.ID == ID)
                 {
-                    return subject;
+                    return course;
                 }
              }
             return null;
         }
-        public static bool IsSubjectExit(int ID) => SearchSubjectByID(ID) == null ? false : true;
+        public static bool IsCourseExit(int ID) => SearchCourseByID(ID) == null ? false : true;
 
     }
 }

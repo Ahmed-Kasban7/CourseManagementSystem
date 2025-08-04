@@ -12,3 +12,4 @@ D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\n
 D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\CourseManagementSystem.pdb
 D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\CourseManagementSystem.genruntimeconfig.cache
 D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\ref\CourseManagementSystem.dll
+D:\Projects\C#Projects\CourseManagementSystem\CourseManagementSystem\obj\Debug\net8.0\CourseManagementSystem.sourcelink.json

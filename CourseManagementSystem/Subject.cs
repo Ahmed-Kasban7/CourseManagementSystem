@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SchoolManagementSyetem
 {
-    public class Subject
+    public class Course
     {
-        private static int subjectCounter = 0;
+        private static int courseCounter = 0;
         private int id;
         private string name;
         private short hours;
@@ -29,9 +29,9 @@ namespace SchoolManagementSyetem
             set=>this.instructorName= value ?? "Known";
         }
         public int NumOfStudRegisteredinSub { get => this.numOfStudRegisteredinSub; set => this.numOfStudRegisteredinSub = value; }
-        public Subject(string name , short hours , string instructorName , int maxLimit)
+        public Course(string name , short hours , string instructorName , int maxLimit)
         {
-            this.id = ++subjectCounter;
+            this.id = ++courseCounter;
             this.Name = name;
             this.Hours = hours;
             this.InstructorName = instructorName;

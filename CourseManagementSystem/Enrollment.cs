@@ -13,105 +13,122 @@ namespace SchoolManagementSyetem
     public enum EnrollmentStatus
     {
         Success,
-        SubjectNotRegistered,
-        StudentNotFoundORSubjectNotFound,
-        StudentNotRegisteredInSubject,
+        CourseNotRegistered,
+        StudentNotFoundORCourseNotFound,
+        StudentNotRegisteredInCourse,
         InvalidGrade ,
-        StudentRegisteredInSubject,
-        SubjectIsFull
+        StudentRegisteredInCourse,
+        CourseIsFull
     }
+    public class EnrollmentInfo {
+       public int StudentID { get; set; }
+       public decimal? Grade { get; set; } // nullable
+        public EnrollmentInfo(int studentID, decimal? grade)
+        {
+            this.StudentID = studentID;
+            this.Grade = grade;
+        }
+        public EnrollmentInfo() { }
+    }
+    public class StudentCourseGradeResult
+    {
+        public EnrollmentStatus Status { get; set; }
+        public int CourseID { get; set; }
+        public int StudentID { get; set; }
+        public decimal? Grade { get; set; }
+    }
+
 
     public class Enrollment
     {
-        // map for connect SubjectID with StudentID and Grade in subject
-        private static Dictionary<int ,List<KeyValuePair<int ,  decimal?>>> enrollments = new Dictionary<int , List<KeyValuePair<int,  decimal?>>>();
+        // map for connect CourseID with StudentID and Grade in course
+        private static Dictionary<int ,List<EnrollmentInfo>> enrollments = new Dictionary<int , List<EnrollmentInfo>>();
         
-        public static EnrollmentStatus RegisterASubjectToStudent(int subjectID , int studentID)
+        public static EnrollmentStatus RegisterACourseToStudent(int courseID , int studentID)
         {
-            Subject subject = SubjectsManagement.SearchSubjectByID(subjectID);
+            Course course = CoursesManagement.SearchCourseByID(courseID);
 
-            // check Is Student Exist or not ,Is Subject Exit or not 
-            if (!StudentsManagement.IsStudentExit(studentID) || !SubjectsManagement.IsSubjectExit(subjectID))
-                return EnrollmentStatus.StudentNotFoundORSubjectNotFound;
+            // check Is Student Exist or not ,Is Course Exit or not 
+            if (!StudentsManagement.IsStudentExit(studentID) || !CoursesManagement.IsCourseExit(courseID))
+                return EnrollmentStatus.StudentNotFoundORCourseNotFound;
 
-            // check Subject Is Not Full 
-            if (subject.IsFull())
-                return EnrollmentStatus.SubjectIsFull;
+            // check Course Is Not Full 
+            if (course.IsFull())
+                return EnrollmentStatus.CourseIsFull;
 
-            // check is Subject ID Registered or not 
-            if (!enrollments.ContainsKey(subjectID))
+            // check is Course ID Registered or not 
+            if (!enrollments.ContainsKey(courseID))
                 // if not exist we add it to enrollment
-                enrollments[subjectID] = new List<KeyValuePair<int, decimal?>>();
+                enrollments[courseID] = new List<EnrollmentInfo>();
 
-            // add student to subject with grade null for intial value
-            enrollments[subjectID].Add(new KeyValuePair<int, decimal?>(studentID, null));
+            // add student to course with grade null for intial value
+            enrollments[courseID].Add(new EnrollmentInfo(studentID, null));
 
-            // increase number of student registered in subject by 1 
-            subject.NumOfStudRegisteredinSub++;
+            // increase number of student registered in course by 1 
+            course.NumOfStudRegisteredinSub++;
             return EnrollmentStatus.Success;
         }
 
-        public static EnrollmentStatus AssignGradeToStudent(int subjectID, int studentID, decimal grade)
+        public static EnrollmentStatus AssignGradeToStudent(int courseID, int studentID, decimal grade)
         {
-            if (!StudentsManagement.IsStudentExit(studentID) || !SubjectsManagement.IsSubjectExit(subjectID))
-                return EnrollmentStatus.StudentNotFoundORSubjectNotFound;
+            var validate = ValidateStudentAndCourse(courseID, studentID);
+            if (validate != EnrollmentStatus.Success)
+                return validate;
 
-            if (!enrollments.ContainsKey(subjectID))
-                return EnrollmentStatus.SubjectNotRegistered;
-
-            var studentList = enrollments[subjectID];
+            var studentList = enrollments[courseID];
 
             for (int i = 0; i < studentList.Count; i++)
             {
                 //  if student ID (input) registered we update grade value 
-                if (studentList[i].Key == studentID)
+                if (studentList[i].StudentID == studentID)
                 {
                     // validation for grade
                     if (grade < 0 || grade > 100)
                         return EnrollmentStatus.InvalidGrade;
 
                     // Update the grade by replacing the KeyValuePair
-                    studentList[i] = new KeyValuePair<int, decimal?>(studentID, grade);
+                    studentList[i].Grade= grade;
                     return EnrollmentStatus.Success;
                 }
             }
             //  if student ID (input) Not registered 
 
-            return EnrollmentStatus.StudentNotRegisteredInSubject;
+            return EnrollmentStatus.StudentNotRegisteredInCourse;
         }
 
-        
-        private static EnrollmentStatus ViewStudentGradeInSubject(int subjectID, int studentID, out decimal? grade)
+        private static StudentCourseGradeResult GetStudentCourseGradeInfo (int courseID, int studentID)
         {
-            grade = -1;
-            if (!StudentsManagement.IsStudentExit(studentID) || !SubjectsManagement.IsSubjectExit(subjectID))
-                return EnrollmentStatus.StudentNotFoundORSubjectNotFound;
+            var result = new StudentCourseGradeResult();
+            result.Status= ValidateStudentAndCourse(courseID, studentID);
+            if (result.Status != EnrollmentStatus.Success)
+                return result;
 
-            // check is Subject ID Registered or not 
-            if (!enrollments.ContainsKey(subjectID))
-                return EnrollmentStatus.SubjectNotRegistered;
-
-            var studentList = enrollments[subjectID];
+            var studentList = enrollments[courseID];
             foreach (var student in studentList) {
 
-                if (student.Key == studentID)
+                if (student.StudentID == studentID)
                 {
-                    grade = student.Value.Value;
-                    return EnrollmentStatus.Success;
+                    result.StudentID = studentID;
+                    result.CourseID = courseID;
+                    result.Status= EnrollmentStatus.Success;
+                    result.Grade = student.Grade;
+                    return result;
                 }
             }
 
-            return EnrollmentStatus.StudentNotRegisteredInSubject;
+            result.Status = EnrollmentStatus.StudentNotRegisteredInCourse;
+            return result;
         }
-        private static EnrollmentStatus ValidateStudentAndSubject(int subjectID, int studentID)
-        {
-            // check Is Student Exist or not ,Is Subject Exit or not 
-            if (!StudentsManagement.IsStudentExit(studentID) || !SubjectsManagement.IsSubjectExit(subjectID))
-                return EnrollmentStatus.StudentNotFoundORSubjectNotFound;
 
-            // check is Subject ID Registered or not 
-            if (!enrollments.ContainsKey(subjectID))
-                return EnrollmentStatus.SubjectNotRegistered;
+        private static EnrollmentStatus ValidateStudentAndCourse(int courseID, int studentID)
+        {
+            // check Is Student Exist or not ,Is Course Exit or not 
+            if (!StudentsManagement.IsStudentExit(studentID) || !CoursesManagement.IsCourseExit(courseID))
+                return EnrollmentStatus.StudentNotFoundORCourseNotFound;
+
+            // check is Course ID Registered or not 
+            if (!enrollments.ContainsKey(courseID))
+                return EnrollmentStatus.CourseNotRegistered;
 
             return EnrollmentStatus.Success;
         }
