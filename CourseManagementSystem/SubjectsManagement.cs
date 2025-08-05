@@ -13,11 +13,11 @@ namespace SchoolManagementSyetem
         private static List<Course> Courses =new List<Course>();
         public static  void AddCourse(Course course)=>Courses.Add(course);
        
-        public static void RemoveCourse(int ID)=>  Courses.Remove(SearchCourseByID(ID));
+        public static void RemoveCourse(int ID)=>  Courses.Remove(GetCourseBy(ID));
         
         public static List<Course> GetCourses() => Courses;
         
-        public static Course SearchCourseByID(int ID)
+        public static Course GetCourseBy(int ID)
         {
             foreach (Course course in Courses) {
                 if(course.ID == ID)
@@ -27,7 +27,7 @@ namespace SchoolManagementSyetem
              }
             return null;
         }
-        public static bool IsCourseExit(int ID) => SearchCourseByID(ID) == null ? false : true;
+        public static bool IsCourseExit(int ID) => GetCourseBy(ID) == null ? false : true;
 
     }
 }

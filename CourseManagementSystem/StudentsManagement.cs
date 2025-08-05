@@ -13,8 +13,8 @@ namespace SchoolManagementSyetem
        
         public static List<Student> GetStudents() => Students ;
 
-        public static void RemoveStudent(int ID) => Students.Remove(SearchStudentByID(ID));
-        public static Student SearchStudentByID(int ID )
+        public static void RemoveStudent(int ID) => Students.Remove(GetStudentBy(ID));
+        public static Student GetStudentBy(int ID )
         {
             foreach (Student s in Students)
             {
@@ -26,6 +26,6 @@ namespace SchoolManagementSyetem
             return null;
         }
 
-        public static bool IsStudentExit(int ID)=>SearchStudentByID(ID)==null ? false : true;
+        public static bool IsStudentExit(int ID)=> GetStudentBy(ID)==null ? false : true;
     }
 }
