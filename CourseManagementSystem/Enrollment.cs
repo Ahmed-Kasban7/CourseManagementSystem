@@ -7,8 +7,9 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using 
 
-namespace SchoolManagementSyetem
+namespace CourseManagementSystem        
 {
     public enum EnrollmentStatus
     {
@@ -97,37 +98,26 @@ namespace SchoolManagementSyetem
 
         public static EnrollmentStatus RegisterACourseToStudent(int courseID , int studentID)
         {
-            Course course = CoursesManagement.GetCourseBy(courseID);
 
-            // check Is Student Exist or not ,Is Course Exit or not 
-            if (!StudentsManagement.IsStudentExit(studentID) || !CoursesManagement.IsCourseExit(courseID))
-                return EnrollmentStatus.StudentNotFoundORCourseNotFound;
+            var validationResult = validateStudentAndCourse(courseID, studentID);
 
-            // check Course Is Not Full 
-            if (course.IsFull())
+            if (validationResult != EnrollmentStatus.Success)
+                return validationResult;
+
+            if (isCourseFull(courseID))
                 return EnrollmentStatus.CourseIsFull;
 
-            // check is Course ID Registered or not 
-            if (!courseEnrollments.ContainsKey(courseID))
-            {
-                // if not exist we add it to enrollment
-                courseEnrollments[courseID] = new List<StudentEnrollment>();
-                studentEnrollments[studentID] = new List<CourseEnrollment>();
-            }
 
-            // add student to course with grade null for intial value
-            courseEnrollments[courseID].Add(new StudentEnrollment(studentID, null));
-            // add course to student with grade null for intial value
-            studentEnrollments[studentID].Add(new CourseEnrollment(courseID, null));
+            initializeEnrollmentIfNeeded(courseID, studentID);
+            addStudentAndCourseEnrollment(courseID, studentID);
+            increaseCourseStudentCount(courseID);
 
-            // increase number of student registered in course by 1 
-            course.NumOfStudRegisteredinSub++;
             return EnrollmentStatus.Success;
         }
-
+        
         public static EnrollmentStatus AssignGradeToStudent(int courseID, int studentID, decimal grade)
         {
-            var validate = ValidateStudentAndCourse(courseID, studentID);
+            var validate = validateStudentAndCourse(courseID, studentID);
             if (validate != EnrollmentStatus.Success)
                 return validate;
 
@@ -148,7 +138,7 @@ namespace SchoolManagementSyetem
         private static StudentCourseGradeResult GetStudentCourseGradeInfo (int courseID, int studentID)
         {
             var result = new StudentCourseGradeResult();
-            result.Status= ValidateStudentAndCourse(courseID, studentID);
+            result.Status= validateStudentAndCourse(courseID, studentID);
             if (result.Status != EnrollmentStatus.Success)
                 return result;
 
@@ -170,20 +160,51 @@ namespace SchoolManagementSyetem
         }
 
       
-        private static EnrollmentStatus ValidateStudentAndCourse(int courseID, int studentID)
+        private static EnrollmentStatus validateStudentAndCourse(int courseID, int studentID)
         {
-            // check Is Student Exist or not ,Is Course Exit or not 
             if (!StudentsManagement.IsStudentExit(studentID) || !CoursesManagement.IsCourseExit(courseID))
                 return EnrollmentStatus.StudentNotFoundORCourseNotFound;
 
-            // check is Course ID Registered or not 
-            if (!enrollments.ContainsKey(courseID))
-                return EnrollmentStatus.CourseNotRegistered;
-
             return EnrollmentStatus.Success;
         }
+        private static bool isCourseFull(int courseID)
+        {
+            Course course = CoursesManagement.GetCourseBy(courseID);
+            return course.IsFull();
+        }
 
+        private static void initializeEnrollmentIfNeeded(int courseID, int studentID)
+        {
+            // check is Course ID Registered or not 
+            if (!courseEnrollments.ContainsKey(courseID))
+            {
+                // if not exist we add it to course enrollment
+                courseEnrollments[courseID] = new List<StudentEnrollment>();
+            }
 
+            // check is Student ID Registered or not 
+            if (!studentEnrollments.ContainsKey(studentID))
+            {
+                // if not exist we add it to Student enrollment
+                studentEnrollments[studentID] = new List<CourseEnrollment>();
+            }
+
+        }
+
+        private static void increaseCourseStudentCount(int courseID)
+        {
+            var course = CoursesManagement.GetCourseBy(courseID);
+            course.NumOfStudRegisteredinSub++;
+
+        }
+
+        private static void addStudentAndCourseEnrollment(int courseID, int studentID)
+        {
+            // add student to course with grade null for intial value
+            courseEnrollments[courseID].Add(new StudentEnrollment(studentID, null));
+            // add course to student with grade null for intial value
+            studentEnrollments[studentID].Add(new CourseEnrollment(courseID, null));
+        }
     }
 }
 
