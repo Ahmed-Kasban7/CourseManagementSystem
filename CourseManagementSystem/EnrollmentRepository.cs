@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,22 +55,21 @@ namespace CourseManagementSystem
 
         private  void initializeEnrollmentIfNeeded(int courseID, int studentID)
         {
-            // check is Course ID Registered or not 
-            if (!courseEnrollments.ContainsKey(courseID))
-            {
-                // if not exist we add it to course enrollment
-                courseEnrollments[courseID] = new List<StudentEnrollment>();
-            }
+            addCourse(courseID);
 
-            // check is Student ID Registered or not 
-            if (!studentEnrollments.ContainsKey(studentID))
-            {
-                // if not exist we add it to Student enrollment
-                studentEnrollments[studentID] = new List<CourseEnrollment>();
-            }
-
+            addstudent(studentID);
         }
 
+        private void addCourse(int courseID)
+        {
+            if(!courseEnrollments.ContainsKey(courseID))
+            courseEnrollments[courseID]=new List<StudentEnrollment>();
+        }
+        private void addstudent(int studentID)
+        {
+            if(!studentEnrollments.ContainsKey(studentID))
+            studentEnrollments[studentID] = new List<CourseEnrollment>();
+        }
         public List<CourseEnrollment> GetStudentCoursesEnrollment(int studentID)
         {
             if (!studentEnrollments.ContainsKey(studentID))
@@ -121,12 +121,22 @@ namespace CourseManagementSystem
             return null;
         }
 
+        public delegate void GradeAssignedToStudentEventHandler(int courseID, int studentID, decimal grade);
+
+        public event GradeAssignedToStudentEventHandler GradeAssignedToStudent;
         public  void AssignGradeToStudent(int courseID, int studentID, decimal grade)
         {
+            var studentEnrollment = GetStudentCourseEnrollment(studentID, courseID);
+            var courseEnrollment = GetCourseStudentEnrollment(studentID, courseID);
 
-            GetStudentCourseEnrollment(studentID, courseID).Grade = grade;
+            if (studentEnrollment != null && courseEnrollment != null)
+            {
+                studentEnrollment.Grade = grade;
+                courseEnrollment.Grade = grade;
 
-            GetCourseStudentEnrollment(studentID, courseID).Grade = grade;
+                GradeAssignedToStudent?.Invoke(courseID, studentID , grade);
+            }
+
         }
 
     }

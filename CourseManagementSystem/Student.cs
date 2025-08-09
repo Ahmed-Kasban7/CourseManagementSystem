@@ -60,5 +60,13 @@ namespace CourseManagementSystem
             Phone = phone;
             NationalID = nationalID;
         }
+
+        public void NotifyGardeAssign(int courseID, int studentID, decimal grade)
+        {
+            if (studentID == ID)
+            {
+                Console.WriteLine($"📢 إشعار لـ {Name}: تم تعيين درجة {grade} في الكورس {courseID}");
+            }
+        }
     }
 }
