@@ -9,7 +9,21 @@ using System.Text;
 using System.Threading.Tasks;
 namespace CourseManagementSystem        
 {
-    
+    public enum EnrollmentStatus
+    {
+        Success,
+        CourseNotRegistered,
+        StudentNotFoundORCourseNotFound,
+        StudentNotRegisteredInCourse,
+        InvalidGrade,
+        StudentRegisteredInCourse,
+        CourseIsFull
+    }
+
+
+
+
+
     public class StudentCourseGradeResult
     {
         public EnrollmentStatus Status { get; set; }
@@ -84,20 +98,6 @@ namespace CourseManagementSystem
         }
 
 
-        private static void increaseCourseStudentCount(int courseID)
-        {
-            var course = CoursesManagement.GetCourseBy(courseID);
-            course.NumOfStudRegisteredinSub++;
-
-        }
-
-        private static void addStudentAndCourseEnrollment(int courseID, int studentID)
-        {
-            // add student to course with grade null for intial value
-            courseEnrollments[courseID].Add(new StudentEnrollment(studentID, null));
-            // add course to student with grade null for intial value
-            studentEnrollments[studentID].Add(new CourseEnrollment(courseID, null));
-        }
     }
 }
 
