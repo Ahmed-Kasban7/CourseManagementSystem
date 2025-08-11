@@ -10,31 +10,8 @@ namespace CourseManagementSystem
   
     public class EnrollmentRepository
     {
-        public class StudentEnrollment
-        {
-            public int StudentID { get; set; }
-            public decimal? Grade { get; set; } // nullable
-            public StudentEnrollment(int studentID, decimal? grade)
-            {
-                this.StudentID = studentID;
-                this.Grade = grade;
-            }
-            public StudentEnrollment() { }
-        }
 
-        public class CourseEnrollment
-        {
-
-            public int CourseID { get; set; }
-            public decimal? Grade { get; set; } // nullable
-            public CourseEnrollment(int courseID, decimal? grade)
-            {
-                this.CourseID = courseID;
-                this.Grade = grade;
-            }
-            public CourseEnrollment() { }
-
-        }
+        
 
         // map for connect CourseID with StudentsID and Grade in course
         private readonly Dictionary<int, List<StudentEnrollment>> courseEnrollments = new();
@@ -106,10 +83,6 @@ namespace CourseManagementSystem
             }
             return null;
         }
-
-        public delegate void GradeAssignedToStudentEventHandler(int courseID, int studentID, decimal grade);
-
-        public event GradeAssignedToStudentEventHandler GradeAssignedToStudent;
         public  void AssignGradeToStudent(int courseID, int studentID, decimal grade)
         {
             var studentEnrollment = GetStudentCourseEnrollment(studentID, courseID);
@@ -120,7 +93,6 @@ namespace CourseManagementSystem
                 studentEnrollment.Grade = grade;
                 courseEnrollment.Grade = grade;
 
-                GradeAssignedToStudent?.Invoke(courseID, studentID , grade);
             }
 
         }
@@ -144,7 +116,6 @@ namespace CourseManagementSystem
             course.NumOfStudRegisteredinSub--;
 
         }
-
         private void addStudentAndCourseEnrollment(int courseID, int studentID)
         {
             // add student to course with grade null for intial value
@@ -152,7 +123,6 @@ namespace CourseManagementSystem
             // add course to student with grade null for intial value
             studentEnrollments[studentID].Add(new CourseEnrollment(courseID, null));
         }
-
         private bool isStudentEnrollmentInCourse(int courseID, int studentID)
         {
             var studentEnrollment = GetStudentCourseEnrollment(studentID, courseID);
@@ -163,6 +133,7 @@ namespace CourseManagementSystem
         {
             var studentEnrollment = GetStudentCourseEnrollment(studentID, courseID);
             var courseEnrollment = GetCourseStudentEnrollment(studentID, courseID);
+
             if (studentEnrollment != null && courseEnrollment != null) {
                 studentEnrollments[studentID].Remove(studentEnrollment);
                 courseEnrollments[courseID].Remove(courseEnrollment);
