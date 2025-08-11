@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Course.cs" />
+    <None Include="Entities\Course.cs" />
   </ItemGroup>
 
   <ItemGroup>
