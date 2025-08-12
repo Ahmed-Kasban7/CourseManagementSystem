@@ -7,60 +7,23 @@ using System.Threading.Tasks;
 
 namespace CourseManagementSystem.Entities
 {
-    public class Student
+    public class Student:Person
     {
-        private  static int studentCounter=0;
-        private string name;
-        private int age;
-        private readonly int id;
-        private char gender;
-        private string email;
-        private string phone;
-        private string nationalID;
-        public string Name {
-            get => name;
-            set => name=value??"Known";
+        private readonly int? student_ID;
+
+        public int? Student_ID => student_ID;
+        // When Create Student
+        public Student(string name, int age, char gender, string email, string phone, string nationalID)
+            : base(name, age, gender, email, phone, nationalID)
+        {
             
         }
-        public int Age { 
-            get => age;
-            set => age = value<18 ? 18 : value;
-        }
-        public int ID
-        {
-            get => id;
-        }
-        public char Gender { get => gender;
-            set
-            {
-                char V = char.ToUpper(value);
-                gender = V == 'M' || V == 'F' ? V : 'N';
-            }
-        }
-        public string Phone { 
-        get => phone;
-            set => phone = string.IsNullOrWhiteSpace(value) ? "000-0000000" : value;
-        }
-        public string Email
-        {
-            get => email;
-            set => email = string.IsNullOrWhiteSpace(value) ? "unknown@example.com" : value;
-        }
-        public string NationalID { 
-               get =>nationalID;
-            private set => nationalID = string.IsNullOrWhiteSpace(value) ? "N/A" : value;
-        }
-        public Student(string name , int age , char gender , string email, string phone ,string nationalID )
-        {
-            id = ++studentCounter;
-            Name = name;
-            Age = age;
-            Gender = gender;
-            Email = email;
-            Phone = phone;
-            NationalID = nationalID;
-        }
 
-       
+        // When Reading student from database
+        public Student(int student_ID,int Person_ID,string name, int age, char gender, string email, string phone, string nationalID)
+            : base(Person_ID, name, age, gender, email, phone, nationalID)
+        {
+            this.student_ID = student_ID;
+        }
     }
 }
