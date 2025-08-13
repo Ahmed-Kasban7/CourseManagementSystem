@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseManagementSystem.Entities
 {
-    public class Person
+    abstract public class Person
     {
 
         private string name;
