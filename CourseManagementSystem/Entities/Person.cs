@@ -9,13 +9,13 @@ namespace CourseManagementSystem.Entities
     abstract public class Person
     {
 
-        private string name;
-        private int age;
-        private readonly int Person_ID;
-        private char gender;
-        private string email;
-        private string phone;
-        private string nationalID;
+       protected string name;
+       protected int age;
+       protected readonly int Person_ID;
+       protected char gender;
+       protected string email;
+       protected string phone;
+       protected string nationalID;
         public string Name
         {
             get => name;

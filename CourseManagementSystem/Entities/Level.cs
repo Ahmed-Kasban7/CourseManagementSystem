@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseManagementSystem.Entities
 {
-    public class Admin : Person , IAccount
+    internal class Level
     {
-        public string UserName { get;}
-        public string Password { get; set; }
-
-
     }
 }

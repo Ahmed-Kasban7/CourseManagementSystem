@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace CourseManagementSystem.Entities
 {
-    public class Instructor:Person
+    public class Instructor:Person , IAccount
     {
         private readonly int? instructorID;
         private readonly int?  departmentID;
-
+        public string UserName { get; }
+        public string Password { get; set; }
         public int? InstructorID => instructorID;
         public int? DepartmentID => departmentID;
 

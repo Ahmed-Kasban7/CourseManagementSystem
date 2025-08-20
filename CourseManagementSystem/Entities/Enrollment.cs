@@ -10,7 +10,7 @@ namespace CourseManagementSystem.Entities
     {
         ACTIVE,
         COMPLETED,
-        DROPED,
+        DROPPED,
         PENDING
     }
     public enum EnGrade
@@ -35,31 +35,31 @@ namespace CourseManagementSystem.Entities
         
         private int studentID; 
         private int courseID;
-        private int instructorID;
         private EnGrade grade;
         private DateOnly enrollmentDate;
         private EnStatus status;
 
         // When retrive Data from Database 
-        public Enrollment(int studentID, int courseID, int instructorID, EnGrade grade , DateOnly enrollmentDate, EnStatus status)
+        public Enrollment(int studentID, int courseID, EnGrade grade , DateOnly enrollmentDate, EnStatus status)
         {
             this.studentID = studentID;
             this.courseID = courseID;
-            this.instructorID = instructorID;
             this.grade = grade;
             this.enrollmentDate = enrollmentDate;
             this.status = status;
         }
 
+        // Create New Enrollment 
         public Enrollment(int studentID, int courseID)
         {
             this.studentID = studentID;
             this.courseID = courseID;
-            this.instructorID = instructorID;
-            this.grade = grade;
-            this.enrollmentDate = enrollmentDate;
-            this.status = status;
+            this.grade = EnGrade.NOT_GRADED;
+            this.enrollmentDate = DateOnly.FromDateTime(DateTime.Now);
+            this.status = EnStatus.ACTIVE;
         }
+
+
     }
 
 }

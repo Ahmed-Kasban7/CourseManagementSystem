@@ -7,23 +7,29 @@ using System.Threading.Tasks;
 
 namespace CourseManagementSystem.Entities
 {
-    public class Student:Person
+    public class Student:Person ,IAccount
     {
-        private readonly int? student_ID;
-
-        public int? Student_ID => student_ID;
+        private readonly int studentID;
+        public string UserName { get;}
+        public string Password { get; set; }
+        public int StudentID => studentID;
         // When Create Student
-        public Student(string name, int age, char gender, string email, string phone, string nationalID)
+        public Student(string name, int age, char gender, string email, string phone, string nationalID , string password)
             : base(name, age, gender, email, phone, nationalID)
         {
-            
+            UserName = nationalID;
+            Password = password;
         }
 
         // When Reading student from database
-        public Student(int student_ID,int Person_ID,string name, int age, char gender, string email, string phone, string nationalID)
-            : base(Person_ID, name, age, gender, email, phone, nationalID)
+        public Student(int studentID,int PersonID,string name, int age, char gender, string email, string phone, string nationalID, string password )
+            : base(PersonID, name, age, gender, email, phone, nationalID)
         {
-            this.student_ID = student_ID;
+            this.UserName = nationalID;
+            this.Password = password;
+            this.studentID = studentID;
         }
+
+
     }
 }
