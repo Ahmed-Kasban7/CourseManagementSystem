@@ -8,32 +8,35 @@ namespace CourseManagementSystem
 {
     public class Course
     {
-        private int id;
-        private string name;
-        private short hours;
-        private int numOfStudRegisteredinSub;
-        private int maxLimit;
+        private readonly int courseID;
+        private string courseName;
+        private short creditHours;
+        private int levelID;
+        private List<int> Prerequisites;
 
-        public int MaxLimit { get => this.maxLimit; set=>this.maxLimit = value<0 ? 0 : value; }
+        public int LevelID
+        {
+            get => levelID;
+            set => levelID = value;
+        }
         public int ID {  get;}
 
-        public string Name { 
-            get => this.name;
-            set => this.name = value ?? "UnKnown";
+        public string CourseName
+        { 
+            get => this.courseName;
+            set => this.courseName = value ?? "UnKnown";
         }
-        public short Hours { get =>this.hours;
-            set => this.hours = value < 0 ? (short) 0 : value;
+        public short CreditHours
+        { 
+            get =>this.creditHours;
+            set => this.creditHours = value < 0 ? (short) 0 : value;
         }
 
-        public int NumOfStudRegisteredinSub { get => this.numOfStudRegisteredinSub; set => this.numOfStudRegisteredinSub = value; }
         public Course(string name , short hours , string instructorName , int maxLimit)
         {
-            this.Name = name;
-            this.Hours = hours;
-            this.numOfStudRegisteredinSub = 0;
-            this.maxLimit = maxLimit;
+            this.courseName = name;
+            this.creditHours = hours;
         }
-        public bool IsFull() => maxLimit == numOfStudRegisteredinSub;
     }
 
 }
