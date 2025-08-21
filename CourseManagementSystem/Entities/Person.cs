@@ -11,7 +11,7 @@ namespace CourseManagementSystem.Entities
 
        protected string name;
        protected int age;
-       protected readonly int Person_ID;
+       protected readonly int personID;
        protected char gender;
        protected string email;
        protected string phone;
@@ -27,9 +27,9 @@ namespace CourseManagementSystem.Entities
             get => age;
             set => age = value < 18 ? 18 : value;
         }
-        public int ID
+        public int PersonID
         {
-            get => Person_ID;
+            get => personID;
         }
         public char Gender
         {
@@ -71,7 +71,7 @@ namespace CourseManagementSystem.Entities
         public Person(int id, string name, int age, char gender, string email, string phone, string nationalID)
             : this(name, age, gender, email, phone, nationalID)
         {
-            this.Person_ID = id;
+            this.personID = id;
         }
     }
 }
