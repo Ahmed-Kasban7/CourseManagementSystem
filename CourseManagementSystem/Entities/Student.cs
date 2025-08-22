@@ -10,20 +10,17 @@ namespace CourseManagementSystem.Entities
 {
     public class Student:Person ,IAccount
     {
-        private readonly int studentID;
-        private int levelID;
-        public int LevelID {
-            get => levelID;
-            set => levelID = value;
-        }
-        public string UserName => nationalID;
+        public  int StudentID { get; private set; }
+        public int LevelID {  get; private set; }
+        
+        public string UserName => base.NationalID;
         public string Password { get; set; }
-        public int StudentID => studentID;
+
         // When Create Student
         public Student(string name, int age, char gender, string email, string phone, string nationalID,int levelID , string password)
             : base(name, age, gender, email, phone, nationalID)
         {
-            this.levelID= levelID;
+            this.LevelID = levelID;
             Password = password;
         }
 
@@ -31,9 +28,9 @@ namespace CourseManagementSystem.Entities
         public Student(int studentID,int PersonID,string name, int age, char gender, string email, string phone,  string nationalID, int levelID, string password )
             : base(PersonID, name, age, gender, email, phone, nationalID)
         {
-            this.levelID = levelID;
+            this.LevelID = levelID;
             this.Password = password;
-            this.studentID = studentID;
+            this.StudentID = studentID;
         }
 
 

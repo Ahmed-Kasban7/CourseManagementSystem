@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseManagementSystem.Interfaces
 {
-    public interface IAccount
+    public interface IRepository<T> where T : class
     {
 
     }
