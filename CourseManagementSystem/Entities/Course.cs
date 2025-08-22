@@ -8,35 +8,32 @@ namespace CourseManagementSystem
 {
     public class Course
     {
-        private readonly int courseID;
-        private string courseName;
-        private short creditHours;
-        private int levelID;
-        private List<int> Prerequisites;
+        public int CourseID { get; private set; }
+        public string CourseName { get; private set; }
+        public short CreditHours { get; private set; }
+        public int LevelID { get; private set; }
+        public string? Description { get; private set; }
+        public List<int>? Prerequisites { get; private set; }
 
-        public int LevelID
+        // When Retrive Course data form DB
+        public Course(int courseID, string courseName, short creditHours, int levelID,string? description = null,
+            List<int>? prerequisites = null) : this (courseName,creditHours ,levelID , description , prerequisites)
         {
-            get => levelID;
-            set => levelID = value;
+            CourseID = courseID;
         }
-        public int ID {  get;}
-
-        public string CourseName
-        { 
-            get => this.courseName;
-            set => this.courseName = value ?? "UnKnown";
-        }
-        public short CreditHours
-        { 
-            get =>this.creditHours;
-            set => this.creditHours = value < 0 ? (short) 0 : value;
-        }
-
-        public Course(string name , short hours , string instructorName , int maxLimit)
+        // When Create New Course
+        public Course(string courseName, short creditHours, int levelID, string? description = null, List<int>? prerequisites = null)
         {
-            this.courseName = name;
-            this.creditHours = hours;
+            CourseName = courseName;
+            CreditHours = creditHours;
+            LevelID = levelID;
+            Description = description;
+            Prerequisites = prerequisites ?? new List<int>();
         }
+
+
+
     }
+
 
 }
