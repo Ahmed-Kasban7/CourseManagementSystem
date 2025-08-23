@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace CourseManagementSystem.Entities
 {
-    internal class CourseOffering
+    public  class CourseOffering
     {
+        public int OfferingID { get; private set; }
+        public int CourseID { get; private set; }
+        public int IntructorID { get; private set; }
+
+        public Semester semester { get; private set; }
+
+
+
+
     }
 }
