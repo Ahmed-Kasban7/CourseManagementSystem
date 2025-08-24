@@ -11,8 +11,7 @@ namespace CourseManagementSystem.Entities
         public int OfferingID { get; private set; }
         public int CourseID { get; private set; }
         public int IntructorID { get; private set; }
-
-        public Semester semester { get; private set; }
+        public int SemesterID { get; private set; }
 
 
 

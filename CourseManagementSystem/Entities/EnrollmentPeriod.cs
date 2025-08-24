@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace CourseManagementSystem.Entities
 {
-    
-     public class EnrollmentPeriod
+    public enum enSemesterStatus
+    {
+        Upcoming,
+        RegistrationOpen,
+        Running,
+        Completed,
+        Cancelled
+    }
+    public class EnrollmentPeriod
 
     {
 
@@ -67,6 +74,7 @@ namespace CourseManagementSystem.Entities
         {
             Status = enSemesterStatus.Cancelled;
         }
+
 
     }
 }
