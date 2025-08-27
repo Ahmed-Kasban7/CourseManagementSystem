@@ -116,6 +116,7 @@ namespace CourseManagementSystem
             course.NumOfStudRegisteredinSub--;
 
         }
+       
         private void addStudentAndCourseEnrollment(int courseID, int studentID)
         {
             // add student to course with grade null for intial value

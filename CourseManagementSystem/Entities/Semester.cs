@@ -10,11 +10,10 @@ namespace CourseManagementSystem.Entities
         Fall,
         Spring ,
         Summer
-
     }
  
 
-    public class Semester
+    public class SemesterTemplate
     {
         public readonly struct StMonthDay {
             public int Month { get; }
@@ -27,27 +26,28 @@ namespace CourseManagementSystem.Entities
         }
 
 
-        public int SemesterID { get; private set; }   
+        public int semesterTemplateID { get; private set; }   
         public enSemesterType SemesterType { get; private set; }      
-        public StMonthDay StartMonth { get; private set; }   
-        public int DurationInMonths { get; private set; }
+        public StMonthDay StartMonthDay { get; private set; }   
+        public int DurationInWeeks { get; private set; }
 
         public int RegistrationOpenBeforeStart { get; private set; }
+
         // When Create New Semester
-        public Semester(enSemesterType semesterType, StMonthDay startMonth, int durationInMonths, int registrationOpenBeforeStart)
+        public SemesterTemplate(enSemesterType semesterType, StMonthDay startMonthDay, int durationInWeeks, int registrationOpenBeforeStart)
         {
             SemesterType = semesterType;
-            StartMonth = startMonth;
-            DurationInMonths = durationInMonths;
+            StartMonthDay = startMonthDay;
+            DurationInWeeks = durationInWeeks;
             RegistrationOpenBeforeStart = registrationOpenBeforeStart;
         }
 
         // When Retrive data from DB
 
-        public Semester(int semesterID,enSemesterType semesterType, StMonthDay startMonth, int durationInMonths , int registrationOpenBeforeStart)
-         : this (semesterType , startMonth , durationInMonths , registrationOpenBeforeStart)
+        public SemesterTemplate(int semesterTemplateID, enSemesterType semesterType, StMonthDay startMonthDay, int durationInWeeks, int registrationOpenBeforeStart)
+         : this (semesterType , startMonthDay, durationInWeeks, registrationOpenBeforeStart)
         {
-            this.SemesterID = semesterID;
+            this.semesterTemplateID = semesterTemplateID;
         }
     }
 }
